@@ -1,0 +1,87 @@
+version: "2"
+sql:
+  - schema: 
+      - "operators/schema.sql"
+    queries: "operators/query.sql"
+    engine: "postgresql"
+    gen:
+      go:
+        package: "operators"
+        out: "operators"
+        sql_package: "wpgx"
+        emit_json_tags: true
+        emit_exact_table_names: true
+        overrides:
+          - column: "operators.registered_at_block_number"
+            go_type: "uint64"
+          - column: "operators.active_epoch"
+            go_type: "uint32"
+          - column: "operators.exit_epoch"
+            go_type: "uint32"
+          - column: "operators.status"
+            go_type:
+              import: "github.com/galxe/spotted-network/pkg/common/types"
+              package: "types"
+              type: "OperatorStatus"
+            
+  - schema: 
+      - "tasks/schema.sql"
+    queries: "tasks/query.sql"
+    engine: "postgresql"
+    gen:
+      go:
+        package: "tasks"
+        out: "tasks"
+        sql_package: "wpgx"
+        emit_json_tags: true
+        emit_exact_table_names: true
+        overrides:
+          # Column-specific mappings for tasks table
+          - column: "tasks.required_confirmations"
+            go_type: "uint16"
+          - column: "tasks.retry_count"
+            go_type: "uint16"
+          - column: "tasks.chain_id"
+            go_type: "uint32"
+          - column: "tasks.block_number"
+            go_type: "uint64"
+          - column: "tasks.epoch"
+            go_type: "uint32"
+          - column: "tasks.status"
+            go_type:
+              import: "github.com/galxe/spotted-network/pkg/operator/constants"
+              package: "constants"
+              type: "TaskStatus"
+  
+  - schema: 
+      - "consensus_responses/schema.sql"
+      - "tasks/schema.sql"
+    queries: "consensus_responses/query.sql"
+    engine: "postgresql"
+    gen:
+      go:
+        package: "consensus_responses"
+        out: "consensus_responses"
+        sql_package: "wpgx"
+        emit_json_tags: true
+        emit_empty_slices: true
+        overrides:
+          - column: "consensus_responses.chain_id"
+            go_type: "uint32"
+          - column: "consensus_responses.block_number"
+            go_type: "uint64"
+          - column: "consensus_responses.epoch"
+            go_type: "uint32"
+  # Add blacklist schema and queries
+  - schema: 
+      - "blacklist/schema.sql"
+    queries: "blacklist/query.sql"
+    engine: "postgresql"
+    gen:
+      go:
+        package: "blacklist"
+        out: "blacklist"
+        sql_package: "wpgx"
+        emit_json_tags: true
+        emit_exact_table_names: true
+        emit_empty_slices: true
