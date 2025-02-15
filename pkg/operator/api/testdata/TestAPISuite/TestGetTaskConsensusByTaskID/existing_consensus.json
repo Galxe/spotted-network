@@ -1,0 +1,16 @@
+[
+  {
+    "task_id": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+    "epoch": 1,
+    "value": 100,
+    "block_number": 1000,
+    "chain_id": 31337,
+    "target_address": "0x1234567890123456789012345678901234567890",
+    "key": 1000000000000000000,
+    "aggregated_signatures": ["0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef00"],
+    "operator_addresses": ["0x1234567890123456789012345678901234567890"],
+    "consensus_reached_at": "2024-02-15T00:00:00Z",
+    "created_at": "2024-02-15T00:00:00Z",
+    "updated_at": "2024-02-15T00:00:00Z"
+  }
+] 

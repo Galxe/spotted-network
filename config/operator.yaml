@@ -1,0 +1,57 @@
+chains:
+  84532:
+    rpc: https://base-sepolia-rpc.publicnode.com
+    contracts:
+      registry: ""
+      epochManager: ""
+      stateManager: 0xe8Cbc41961125A1B0F86465Ff9a6666e39104E9e
+    required_confirmations: 2
+    average_block_time: 2
+  421614:
+    rpc: https://arbitrum-sepolia.gateway.tenderly.co
+    contracts:
+      registry: ""
+      epochManager: ""
+      stateManager: 0xe3Ed30610de2914b45d848718d6837eF14361C41
+    required_confirmations: 2
+    average_block_time: 2
+  11155111:
+    rpc: wss://ethereum-sepolia-rpc.publicnode.com
+    contracts:
+      registry: 0xB6dE44d8F1425752CAc1103D99e59eD329F65aCF
+      epochManager: 0x5bFB7609a51F8577D90e8576DE6e85BC7fBf08F7
+      stateManager: 0xcc6Db3c0389128bad36796079aB336B3AfC1cF19
+    required_confirmations: 2
+    average_block_time: 12
+database:
+  app_name: spotted
+  dbname: spotted
+  enable_metrics: true
+  enable_tracing: true
+  host: postgres
+  is_proxy: false
+  max_conn_idle: 1m
+  max_conn_life: 6h
+  max_conns: 100
+  min_conns: 0
+  password: spotted
+  port: 5432
+  username: spotted
+http:
+  port: 8080
+metric:
+  port: 4014
+p2p:
+  bootstrap_peers: []
+  port: 10000
+  rendezvous: spotted-network
+redis:
+  cluster_max_redirects: 3
+  host: redis
+  is_cluster_mode: false
+  is_elasticache: false
+  is_failover: false
+  password: ""
+  pool_size: 50
+  port: 6379
+  read_timeout: 3s
